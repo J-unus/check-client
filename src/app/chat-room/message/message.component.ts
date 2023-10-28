@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {WebSocketService} from "../web-socket/web-socket.service";
+import {WebSocketService} from "../../web-socket/web-socket.service";
 import {map, Subscription} from "rxjs";
 import {MessageDto} from "./message.dto";
 
