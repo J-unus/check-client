@@ -1,3 +1,3 @@
 export class ChatRoomDto {
-  public link: string;
+  public uuid: string;
 }

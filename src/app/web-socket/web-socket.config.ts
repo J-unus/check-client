@@ -3,13 +3,6 @@ import { RxStompConfig } from '@stomp/rx-stomp';
 export const webSocketConfig: RxStompConfig = {
   brokerURL: 'ws://localhost:8089/ws',
 
-  // Headers
-  // Typical keys: login, passcode, host
-  connectHeaders: {
-    login: 'guest',
-    passcode: 'guest',
-  },
-
   // How often to heartbeat?
   // Interval in milliseconds, set to 0 to disable
   heartbeatIncoming: 0, // Typical value 0 - disabled
@@ -18,7 +11,7 @@ export const webSocketConfig: RxStompConfig = {
   // Wait in milliseconds before attempting auto reconnect
   // Set to 0 to disable
   // Typical value 500 (500 milli seconds)
-  reconnectDelay: 2000,
+  reconnectDelay: 10000,
 
   // Will log diagnostics on console
   // It can be quite verbose, not recommended in production

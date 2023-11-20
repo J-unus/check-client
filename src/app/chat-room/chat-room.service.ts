@@ -2,7 +2,7 @@ import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environments/environment";
 import {Injectable} from "@angular/core";
 import {Observable} from "rxjs";
-import {ChatRoomDto} from "./chat-room.dto";
+import {ChatRoomDto} from "./dto/chat-room.dto";
 
 @Injectable({
   providedIn: 'root'
@@ -15,5 +15,9 @@ export class ChatRoomService {
 
   create(password: string): Observable<ChatRoomDto> {
     return this.http.post<ChatRoomDto>(this.RESOURCE_URL, {password});
+  }
+
+  authorize(uuid: string, password: string): Observable<ChatRoomDto> {
+    return this.http.post<ChatRoomDto>(this.RESOURCE_URL + '/authorize', {uuid, password});
   }
 }

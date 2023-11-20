@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="col">
+    <input type="text"
+           class="form-control"
+           name="message"
+           placeholder="Password"
+           id="create-chat-room"
+           [(ngModel)]="password"
+    />
+  </div>
+  <div class="col">
+    <button class="btn btn-primary" (click)="createChatRoom()">
+      {{'button.createChatRoom' | translate}}
+    </button>
+  </div>
+</div>
+
+<div class="row pt-3">
+  <div class="col">
+    <input type="text"
+           class="form-control"
+           name="message"
+           placeholder="Uuid"
+           id="join-chat-room-uuid"
+           [(ngModel)]="uuid"
+    />
+  </div>
+  <div class="col">
+    <button class="btn btn-primary" (click)="joinChatRoom()">
+      {{'button.joinChatRoom' | translate}}
+    </button>
+  </div>
+</div>

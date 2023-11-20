@@ -1,6 +1,7 @@
 {
   "button": {
     "sendMessage": "Saada sõnum",
-    "createChatRoom": "Loo vestlustuba"
+    "createChatRoom": "Loo vestlustuba",
+    "joinChatRoom": "Ühine vestlustoaga"
   }
 }
