@@ -17,7 +17,7 @@ export class ChatRoomService {
     return this.http.post<ChatRoomDto>(this.RESOURCE_URL, {password});
   }
 
-  authorize(uuid: string, password: string): Observable<ChatRoomDto> {
-    return this.http.post<ChatRoomDto>(this.RESOURCE_URL + '/authorize', {uuid, password});
+  authorize(uuid: string, password: string): Observable<string> {
+    return this.http.post(this.RESOURCE_URL + '/authorize', {uuid, password}, {responseType: 'text'});
   }
 }

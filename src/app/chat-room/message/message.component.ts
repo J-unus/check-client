@@ -16,9 +16,7 @@ export class MessageComponent implements OnInit, OnDestroy {
   receivedMessages: MessageDto[] = [];
   private topicSubscription: Subscription;
   message: string;
-  password = '123';
   chatRoomUuid: string;
-  isAuthorized = false;
 
   constructor(private webSocketService: WebSocketService,
               private route: ActivatedRoute) {
@@ -31,19 +29,23 @@ export class MessageComponent implements OnInit, OnDestroy {
     });
   }
 
-  private initPage() {
-    const subHeaders: StompHeaders = {password: this.password, chatRoomUuid: this.chatRoomUuid};
+  private initPage(): void {
+    const subHeaders: StompHeaders = {chatRoomUuid: this.chatRoomUuid};
     this.topicSubscription = this.webSocketService
       .watch({destination: this.TOPIC_ENDPOINT, subHeaders})
       .pipe(map(message => JSON.parse(message.body)))
       .subscribe((message: MessageDto) => {
         this.receivedMessages.push(message);
       });
+    this.webSocketService.activate();
   }
 
   ngOnDestroy(): void {
     if (this.topicSubscription) {
       this.topicSubscription.unsubscribe();
+    }
+    if (this.webSocketService.active) {
+      this.webSocketService.deactivate();
     }
   }
 

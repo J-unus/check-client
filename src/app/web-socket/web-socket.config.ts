@@ -1,4 +1,4 @@
-import { RxStompConfig } from '@stomp/rx-stomp';
+import {RxStomp, RxStompConfig} from '@stomp/rx-stomp';
 
 export const webSocketConfig: RxStompConfig = {
   brokerURL: 'ws://localhost:8089/ws',
@@ -18,5 +18,14 @@ export const webSocketConfig: RxStompConfig = {
   // Skip this key to stop logging to console
   debug: (msg: string): void => {
     console.log(new Date(), msg);
+  },
+
+  beforeConnect: (client: RxStomp): Promise<void> => {
+    return new Promise<void>((resolve) => {
+      client.stompClient.connectHeaders = {
+        Authorization: 'Bearer ' + sessionStorage.getItem("checkpoint-token")
+      }
+      resolve();
+    });
   },
 };

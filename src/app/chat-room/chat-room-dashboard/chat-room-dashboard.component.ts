@@ -33,7 +33,8 @@ export class ChatRoomDashboardComponent implements OnInit {
     if (!this.uuid) {
       return;
     }
-    this.chatRoomService.authorize(this.uuid, this.password).subscribe(() => {
+    this.chatRoomService.authorize(this.uuid, this.password).subscribe((token) => {
+      sessionStorage.setItem("checkpoint-token", token)
       this.router.navigate(['chat-room', this.uuid], {
         relativeTo: this.activatedRoute,
       });
