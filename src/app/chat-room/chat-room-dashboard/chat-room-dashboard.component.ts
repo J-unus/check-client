@@ -1,21 +1,26 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {ChatRoomService} from "../chat-room.service";
+
+export enum ViewEnum {
+  CHOOSE = 'choose',
+  CREATE = 'create',
+  JOIN = 'join',
+}
 
 @Component({
   selector: 'checkpoint-chat-room-dashboard',
   templateUrl: 'chat-room-dashboard.component.html'
 })
-export class ChatRoomDashboardComponent implements OnInit {
+export class ChatRoomDashboardComponent {
+  protected readonly ViewEnum = ViewEnum;
   uuid: string;
   password: string;
+  view: ViewEnum = ViewEnum.CHOOSE;
 
   constructor(private chatRoomService: ChatRoomService,
               private router: Router,
               private activatedRoute: ActivatedRoute) {
-  }
-
-  ngOnInit(): void {
   }
 
   createChatRoom(): void {
@@ -23,19 +28,21 @@ export class ChatRoomDashboardComponent implements OnInit {
       return;
     }
     this.chatRoomService.create(this.password).subscribe(response => {
-      this.router.navigate(['chat-room', response.uuid], {
-        relativeTo: this.activatedRoute,
-      });
+      this.authorizeAndNavigate(response.uuid);
     });
   }
 
   joinChatRoom(): void {
-    if (!this.uuid) {
+    if (!this.uuid || !this.password) {
       return;
     }
-    this.chatRoomService.authorize(this.uuid, this.password).subscribe((token) => {
+    this.authorizeAndNavigate(this.uuid);
+  }
+
+  private authorizeAndNavigate(uuid: string) {
+    this.chatRoomService.authorize(uuid, this.password).subscribe((token) => {
       sessionStorage.setItem("checkpoint-token", token)
-      this.router.navigate(['chat-room', this.uuid], {
+      this.router.navigate(['chat-room', uuid], {
         relativeTo: this.activatedRoute,
       });
     });

@@ -1,7 +1,13 @@
 {
   "button": {
     "sendMessage": "Saada sõnum",
+    "create": "Loo",
     "createChatRoom": "Loo vestlustuba",
+    "join": "Ühine",
     "joinChatRoom": "Ühine vestlustoaga"
+  },
+  "dashboard": {
+    "password": "Parool",
+    "uuid": "Vestustoa number"
   }
 }

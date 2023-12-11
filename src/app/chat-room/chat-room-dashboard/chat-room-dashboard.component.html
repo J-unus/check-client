@@ -1,33 +1,65 @@
-<div class="row">
-  <div class="col">
-    <input type="text"
-           class="form-control"
-           name="message"
-           placeholder="Password"
-           id="create-chat-room"
-           [(ngModel)]="password"
-    />
+<div *ngIf="view === ViewEnum.CHOOSE">
+  <div class="col pt-3">
+    <div class="d-grid gap-2">
+      <button class="btn btn-primary btn-lg" (click)="view = ViewEnum.CREATE">
+        {{'button.createChatRoom' | translate}}
+      </button>
+    </div>
   </div>
-  <div class="col">
-    <button class="btn btn-primary" (click)="createChatRoom()">
-      {{'button.createChatRoom' | translate}}
-    </button>
+
+  <div class="col pt-3">
+    <div class="d-grid gap-2">
+      <button class="btn btn-primary btn-lg" (click)="view = ViewEnum.JOIN">
+        {{'button.joinChatRoom' | translate}}
+      </button>
+    </div>
   </div>
 </div>
 
-<div class="row pt-3">
-  <div class="col">
-    <input type="text"
-           class="form-control"
-           name="message"
-           placeholder="Uuid"
-           id="join-chat-room-uuid"
-           [(ngModel)]="uuid"
-    />
+<div *ngIf="view === ViewEnum.JOIN">
+  <div class="row pt-3">
+    <div class="col">
+      <input type="text"
+             class="form-control"
+             name="uuid"
+             [placeholder]="'dashboard.uuid' | translate"
+             id="join-chat-room-uuid"
+             [(ngModel)]="uuid"
+      />
+    </div>
   </div>
-  <div class="col">
-    <button class="btn btn-primary" (click)="joinChatRoom()">
-      {{'button.joinChatRoom' | translate}}
-    </button>
+</div>
+
+<div *ngIf="view === ViewEnum.CREATE || view === ViewEnum.JOIN">
+  <div class="row pt-3">
+    <div class="col">
+      <input type="password"
+             class="form-control"
+             name="password"
+             [placeholder]="'dashboard.password' | translate"
+             id="create"
+             [(ngModel)]="password"
+      />
+    </div>
+  </div>
+</div>
+
+<div *ngIf="view === ViewEnum.CREATE">
+  <div class="col pt-3">
+    <div class="d-grid gap-2">
+      <button class="btn btn-primary btn-lg" (click)="createChatRoom()">
+        {{'button.create' | translate}}
+      </button>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="view === ViewEnum.JOIN">
+  <div class="col pt-3">
+    <div class="d-grid gap-2">
+      <button class="btn btn-primary btn-lg" (click)="joinChatRoom()">
+        {{'button.join' | translate}}
+      </button>
+    </div>
   </div>
 </div>
