@@ -2,7 +2,6 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {WebSocketService} from "../../web-socket/web-socket.service";
 import {map, Subscription} from "rxjs";
 import {MessageDto} from "../dto/message.dto";
-import {StompHeaders} from "@stomp/rx-stomp";
 import {ActivatedRoute} from "@angular/router";
 
 @Component({
@@ -11,8 +10,8 @@ import {ActivatedRoute} from "@angular/router";
   styleUrls: ['./message.component.scss']
 })
 export class MessageComponent implements OnInit, OnDestroy {
-  private readonly TOPIC_ENDPOINT = '/topic/checkpoint';
-  private readonly MESSAGE_DESTINATION = '/app/checkpoint';
+  private readonly TOPIC_ENDPOINT = '/topic/checkpoint/';
+  private readonly MESSAGE_DESTINATION = '/app/checkpoint/';
   receivedMessages: MessageDto[] = [];
   private topicSubscription: Subscription;
   message: string;
@@ -30,9 +29,8 @@ export class MessageComponent implements OnInit, OnDestroy {
   }
 
   private initPage(): void {
-    const subHeaders: StompHeaders = {chatRoomUuid: this.chatRoomUuid};
     this.topicSubscription = this.webSocketService
-      .watch({destination: this.TOPIC_ENDPOINT, subHeaders})
+      .watch({destination: this.TOPIC_ENDPOINT + this.chatRoomUuid})
       .pipe(map(message => JSON.parse(message.body)))
       .subscribe((message: MessageDto) => {
         this.receivedMessages.push(message);
@@ -50,6 +48,6 @@ export class MessageComponent implements OnInit, OnDestroy {
   }
 
   sendMessage(): void {
-    this.webSocketService.publish({destination: this.MESSAGE_DESTINATION, body: this.message});
+    this.webSocketService.publish({destination: this.MESSAGE_DESTINATION + this.chatRoomUuid, body: this.message});
   }
 }
