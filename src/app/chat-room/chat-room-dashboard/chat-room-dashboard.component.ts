@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {ChatRoomService} from "../chat-room.service";
+import SessionStorageUtil from "../../shared/util/session-storage.util";
 
 export enum ViewEnum {
   CHOOSE = 'choose',
@@ -41,7 +42,7 @@ export class ChatRoomDashboardComponent {
 
   private authorizeAndNavigate(uuid: string) {
     this.chatRoomService.authorize(uuid, this.password).subscribe((token) => {
-      sessionStorage.setItem("checkpoint-token", token)
+      SessionStorageUtil.setAuthToken(token);
       this.router.navigate(['chat-room', uuid], {
         relativeTo: this.activatedRoute,
       });

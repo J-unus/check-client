@@ -1,4 +1,5 @@
 import {RxStomp, RxStompConfig} from '@stomp/rx-stomp';
+import SessionStorageUtil from "../shared/util/session-storage.util";
 
 export const webSocketConfig: RxStompConfig = {
   brokerURL: 'ws://localhost:8089/ws',
@@ -23,7 +24,7 @@ export const webSocketConfig: RxStompConfig = {
   beforeConnect: (client: RxStomp): Promise<void> => {
     return new Promise<void>((resolve) => {
       client.stompClient.connectHeaders = {
-        Authorization: 'Bearer ' + sessionStorage.getItem("checkpoint-token")
+        Authorization: 'Bearer ' + SessionStorageUtil.getAuthToken()
       }
       resolve();
     });
