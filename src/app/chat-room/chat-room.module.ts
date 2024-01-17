@@ -5,6 +5,7 @@ import {CommonModule} from "@angular/common";
 import {FormsModule} from "@angular/forms";
 import {TranslateModule} from "@ngx-translate/core";
 import {ChatRoomDashboardComponent} from "./chat-room-dashboard/chat-room-dashboard.component";
+import {MatIconModule} from "@angular/material/icon";
 
 const routes: Routes = [
   {
@@ -22,12 +23,13 @@ const routes: Routes = [
     MessageComponent,
     ChatRoomDashboardComponent,
   ],
-  imports: [
-    CommonModule,
-    RouterModule.forChild(routes),
-    FormsModule,
-    TranslateModule,
-  ]
+    imports: [
+        CommonModule,
+        RouterModule.forChild(routes),
+        FormsModule,
+        TranslateModule,
+        MatIconModule,
+    ]
 })
 export class ChatRoomModule {
 }

@@ -4,7 +4,8 @@
     "create": "Loo",
     "createChatRoom": "Loo vestlustuba",
     "join": "Ühine",
-    "joinChatRoom": "Ühine vestlustoaga"
+    "joinChatRoom": "Ühine vestlustoaga",
+    "back": "Tagasi"
   },
   "dashboard": {
     "password": "Parool",

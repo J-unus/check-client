@@ -1,1 +1,21 @@
 @import "bootstrap/scss/bootstrap";
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+.icon-xs {
+  transform: scale(0.5);
+}
+
+.icon-sm {
+  transform: scale(0.75);
+}
+
+.icon-lg {
+  transform: scale(1.25);
+}
+
+.icon-xl {
+  transform: scale(1.5);
+}

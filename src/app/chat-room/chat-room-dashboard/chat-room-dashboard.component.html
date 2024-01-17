@@ -16,6 +16,13 @@
   </div>
 </div>
 
+<div *ngIf="view === ViewEnum.CREATE || view === ViewEnum.JOIN">
+  <a class="icon-link" [routerLink]="" role="button" (click)="view = ViewEnum.CHOOSE">
+    <mat-icon class="icon-sm" aria-hidden="false" fontIcon="chevron_left"></mat-icon>
+    {{'button.back' | translate}}
+  </a>
+</div>
+
 <div *ngIf="view === ViewEnum.JOIN">
   <div class="row pt-3">
     <div class="col">
