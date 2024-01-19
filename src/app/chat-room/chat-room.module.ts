@@ -7,6 +7,8 @@ import {TranslateModule} from "@ngx-translate/core";
 import {ChatRoomDashboardComponent} from "./chat-room-dashboard/chat-room-dashboard.component";
 import {MatIconModule} from "@angular/material/icon";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {MatButtonModule} from "@angular/material/button";
+import {MatInputModule} from "@angular/material/input";
 
 const routes: Routes = [
   {
@@ -31,6 +33,8 @@ const routes: Routes = [
     TranslateModule,
     MatIconModule,
     MatProgressSpinnerModule,
+    MatButtonModule,
+    MatInputModule,
   ]
 })
 export class ChatRoomModule {
