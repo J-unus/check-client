@@ -3,7 +3,8 @@
     "loginForbidden": "Vale toa tunnus või parool",
     "requestFailed": "Päring ebaõnnestus",
     "stompFailed": "Vestlustoaga ühendumine ebaõnnestus",
-    "missingAuthentication": "Puudub autoriseering"
+    "missingAuthentication": "Puudub autoriseering",
+    "missingRequiredFields": "Täida kohustuslikud väljad"
   },
   "button": {
     "sendMessage": "Saada sõnum",
