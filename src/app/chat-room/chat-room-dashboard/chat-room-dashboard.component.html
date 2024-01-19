@@ -16,7 +16,7 @@
   </div>
 </div>
 
-<div *ngIf="view === ViewEnum.CREATE || view === ViewEnum.JOIN">
+<div class="pb-3" *ngIf="view === ViewEnum.CREATE || view === ViewEnum.JOIN">
   <a class="icon-link" [routerLink]="" role="button" (click)="view = ViewEnum.CHOOSE">
     <mat-icon class="icon-sm" aria-hidden="false" fontIcon="chevron_left"></mat-icon>
     {{'button.back' | translate}}
@@ -24,7 +24,7 @@
 </div>
 
 <div *ngIf="view === ViewEnum.JOIN">
-  <div class="row pt-3">
+  <div class="row">
     <div class="col">
       <mat-form-field class="w-100">
         <mat-label>{{'dashboard.uuid' | translate}}</mat-label>
@@ -40,7 +40,7 @@
 </div>
 
 <div *ngIf="view === ViewEnum.CREATE || view === ViewEnum.JOIN">
-  <div class="row pt-3">
+  <div class="row">
     <div class="col">
       <mat-form-field class="w-100">
         <mat-label>{{'dashboard.password' | translate}}</mat-label>
@@ -56,7 +56,7 @@
 </div>
 
 <div *ngIf="view === ViewEnum.CREATE">
-  <div class="col pt-3">
+  <div class="col">
     <div class="d-grid gap-2">
       <button mat-raised-button class="button-large" color="primary" (click)="createChatRoom()">
         {{'button.create' | translate}}
@@ -66,7 +66,7 @@
 </div>
 
 <div *ngIf="view === ViewEnum.JOIN">
-  <div class="col pt-3">
+  <div class="col">
     <div class="d-grid gap-2">
       <button mat-raised-button class="button-large" color="primary" (click)="joinChatRoom()">
         {{'button.join' | translate}}
