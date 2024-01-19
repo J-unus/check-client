@@ -8,4 +8,8 @@ export default class SessionStorageUtil {
   static getAuthToken(): string {
     return sessionStorage.getItem(this.TOKEN_KEY)
   }
+
+  static clearAll(): void {
+    sessionStorage.clear();
+  }
 }

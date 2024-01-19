@@ -1,4 +1,10 @@
 {
+  "notification": {
+    "loginForbidden": "Vale toa tunnus või parool",
+    "requestFailed": "Päring ebaõnnestus",
+    "stompFailed": "Vestlustoaga ühendumine ebaõnnestus",
+    "missingAuthentication": "Puudub autoriseering"
+  },
   "button": {
     "sendMessage": "Saada sõnum",
     "create": "Loo",

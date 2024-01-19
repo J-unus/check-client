@@ -72,7 +72,8 @@
               "browserTarget": "checkpoint:build:production"
             },
             "development": {
-              "browserTarget": "checkpoint:build:development"
+              "browserTarget": "checkpoint:build:development",
+              "liveReload": true
             }
           },
           "defaultConfiguration": "development"

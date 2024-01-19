@@ -8,10 +8,12 @@ import {RouterOutlet} from "@angular/router";
 import {AppRoutingModule} from "./app-routing.module";
 import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
-import {HttpClient, HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from "@angular/common/http";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {ToastrModule} from "ngx-toastr";
+import {NotificationInterceptor} from "./core/interceptor/notification.interceptor";
 
-export function createTranslateLoader(http: HttpClient) {
+export function createTranslateLoader(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
 
@@ -26,16 +28,17 @@ export function createTranslateLoader(http: HttpClient) {
     RouterOutlet,
     HttpClientModule,
     TranslateModule.forRoot({
-      defaultLanguage: 'et',
       loader: {
         provide: TranslateLoader,
         useFactory: createTranslateLoader,
         deps: [HttpClient],
       }
     }),
+    ToastrModule.forRoot(),
     BrowserAnimationsModule
   ],
   providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: NotificationInterceptor, multi: true },
     {
       provide: WebSocketService,
       useFactory: webSocketServiceFactory,

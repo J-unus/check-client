@@ -9,13 +9,13 @@
     />
   </div>
   <div class="col">
-    <button class="btn btn-primary" (click)="sendMessage()">
+    <button class="btn btn-primary" (click)="sendMessage()" [disabled]="!connected">
       Send Message
     </button>
   </div>
 </div>
 
-<div class="row pt-5">
+<div class="row pt-5" *ngIf="connected; else connecting">
   <h4>Received messages</h4>
   <ol>
     <li class="message" *ngFor="let message of receivedMessages">
@@ -23,3 +23,7 @@
     </li>
   </ol>
 </div>
+
+<ng-template #connecting>
+  <mat-spinner></mat-spinner>
+</ng-template>
