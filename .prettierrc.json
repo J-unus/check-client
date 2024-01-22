@@ -1,0 +1,18 @@
+{
+  "printWidth": 180,
+  "tabWidth": 2,
+  "endOfLine": "auto",
+  "singleQuote": true,
+  "quoteProps": "consistent",
+  "trailingComma": "all",
+  "arrowParens": "avoid",
+  "overrides": [
+    {
+      "files": ["*.md", "*.json", "*.conf.js"],
+      "options": {
+        "tabWidth": 2
+      }
+    }
+  ],
+  "extends": ["plugin:prettier/recommended"]
+}

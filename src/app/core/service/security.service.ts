@@ -1,11 +1,10 @@
-import {Injectable} from "@angular/core";
-import SessionStorageUtil from "../../shared/util/session-storage.util";
+import { Injectable } from '@angular/core';
+import SessionStorageUtil from '../../shared/util/session-storage.util';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SecurityService {
-
   isAuthenticated(): boolean {
     return !!SessionStorageUtil.getAuthToken();
   }

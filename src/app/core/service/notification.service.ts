@@ -1,16 +1,17 @@
-import {Injectable} from "@angular/core";
-import {ToastrService} from "ngx-toastr";
-import {TranslateService} from "@ngx-translate/core";
+import { Injectable } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
+import { TranslateService } from '@ngx-translate/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class NotificationService {
   private toastOptions = { closeButton: true };
 
-  constructor(private toastService: ToastrService,
-              private translateService: TranslateService) {
-  }
+  constructor(
+    private toastService: ToastrService,
+    private translateService: TranslateService,
+  ) {}
 
   errorTranslate(error: string): void {
     this.translateService.get(error).subscribe((translation: string) => {

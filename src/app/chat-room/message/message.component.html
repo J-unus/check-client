@@ -1,17 +1,9 @@
 <div class="row">
   <div class="col">
-    <input type="text"
-           class="form-control"
-           name="message"
-           placeholder="Type message..."
-           id="send-message"
-           [(ngModel)]="message"
-    />
+    <input type="text" class="form-control" name="message" placeholder="Type message..." id="send-message" [(ngModel)]="message" />
   </div>
   <div class="col">
-    <button mat-raised-button color="primary" (click)="sendMessage()" [disabled]="!connected">
-      Send Message
-    </button>
+    <button mat-raised-button color="primary" (click)="sendMessage()" [disabled]="!connected">Send Message</button>
   </div>
 </div>
 
@@ -19,7 +11,7 @@
   <h4>Received messages</h4>
   <ol>
     <li class="message" *ngFor="let message of receivedMessages">
-      {{message.body}}
+      {{ message.body }}
     </li>
   </ol>
 </div>

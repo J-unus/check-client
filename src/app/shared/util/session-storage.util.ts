@@ -1,12 +1,12 @@
 export default class SessionStorageUtil {
-  private static readonly TOKEN_KEY = "checkpoint-token";
+  private static readonly TOKEN_KEY = 'checkpoint-token';
 
   static setAuthToken(value: string): void {
-    sessionStorage.setItem(this.TOKEN_KEY, value)
+    sessionStorage.setItem(this.TOKEN_KEY, value);
   }
 
   static getAuthToken(): string {
-    return sessionStorage.getItem(this.TOKEN_KEY)
+    return sessionStorage.getItem(this.TOKEN_KEY);
   }
 
   static clearAll(): void {

@@ -1,5 +1,5 @@
-import {webSocketConfig} from "./web-socket.config";
-import {WebSocketService} from "./web-socket.service";
+import { webSocketConfig } from './web-socket.config';
+import { WebSocketService } from './web-socket.service';
 
 export function webSocketServiceFactory() {
   const rxStomp = new WebSocketService();

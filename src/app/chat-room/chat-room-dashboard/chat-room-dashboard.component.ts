@@ -1,8 +1,8 @@
-import {Component} from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
-import {ChatRoomService} from "../chat-room.service";
-import SessionStorageUtil from "../../shared/util/session-storage.util";
-import {NotificationService} from "../../core/service/notification.service";
+import { Component } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ChatRoomService } from '../chat-room.service';
+import SessionStorageUtil from '../../shared/util/session-storage.util';
+import { NotificationService } from '../../core/service/notification.service';
 
 export enum ViewEnum {
   CHOOSE = 'choose',
@@ -12,7 +12,7 @@ export enum ViewEnum {
 
 @Component({
   selector: 'checkpoint-chat-room-dashboard',
-  templateUrl: 'chat-room-dashboard.component.html'
+  templateUrl: 'chat-room-dashboard.component.html',
 })
 export class ChatRoomDashboardComponent {
   protected readonly ViewEnum = ViewEnum;
@@ -20,11 +20,12 @@ export class ChatRoomDashboardComponent {
   password: string;
   view: ViewEnum = ViewEnum.CHOOSE;
 
-  constructor(private chatRoomService: ChatRoomService,
-              private router: Router,
-              private notificationService: NotificationService,
-              private activatedRoute: ActivatedRoute) {
-  }
+  constructor(
+    private chatRoomService: ChatRoomService,
+    private router: Router,
+    private notificationService: NotificationService,
+    private activatedRoute: ActivatedRoute,
+  ) {}
 
   createChatRoom(): void {
     if (!this.password) {
@@ -45,7 +46,7 @@ export class ChatRoomDashboardComponent {
   }
 
   private authorizeAndNavigate(uuid: string) {
-    this.chatRoomService.authorize(uuid, this.password).subscribe((token) => {
+    this.chatRoomService.authorize(uuid, this.password).subscribe(token => {
       SessionStorageUtil.setAuthToken(token);
       this.router.navigate(['chat-room', uuid], {
         relativeTo: this.activatedRoute,

@@ -1,20 +1,13 @@
-import {Injectable} from "@angular/core";
-import {
-  HttpErrorResponse,
-  HttpEvent,
-  HttpHandler,
-  HttpInterceptor,
-  HttpRequest
-} from "@angular/common/http";
-import {catchError, Observable} from "rxjs";
-import {NotificationService} from "../service/notification.service";
+import { Injectable } from '@angular/core';
+import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
+import { catchError, Observable } from 'rxjs';
+import { NotificationService } from '../service/notification.service';
 
 @Injectable()
 export class NotificationInterceptor implements HttpInterceptor {
   private readonly UNAUTHORIZED = 403;
 
-  constructor(private notificationService: NotificationService) {
-  }
+  constructor(private notificationService: NotificationService) {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(request).pipe(
@@ -28,6 +21,7 @@ export class NotificationInterceptor implements HttpInterceptor {
         }
 
         throw new Error(response);
-      }));
+      }),
+    );
   }
 }

@@ -2,7 +2,7 @@
   <div class="col pt-3">
     <div class="d-grid gap-2">
       <button mat-raised-button class="button-large" color="primary" (click)="view = ViewEnum.CREATE">
-        {{'button.createChatRoom' | translate}}
+        {{ 'button.createChatRoom' | translate }}
       </button>
     </div>
   </div>
@@ -10,7 +10,7 @@
   <div class="col pt-3">
     <div class="d-grid gap-2">
       <button mat-raised-button class="button-large" color="primary" (click)="view = ViewEnum.JOIN">
-        {{'button.joinChatRoom' | translate}}
+        {{ 'button.joinChatRoom' | translate }}
       </button>
     </div>
   </div>
@@ -19,7 +19,7 @@
 <div class="pb-3" *ngIf="view === ViewEnum.CREATE || view === ViewEnum.JOIN">
   <a class="icon-link" [routerLink]="" role="button" (click)="view = ViewEnum.CHOOSE">
     <mat-icon class="icon-sm" aria-hidden="false" fontIcon="chevron_left"></mat-icon>
-    {{'button.back' | translate}}
+    {{ 'button.back' | translate }}
   </a>
 </div>
 
@@ -27,13 +27,8 @@
   <div class="row">
     <div class="col">
       <mat-form-field class="w-100">
-        <mat-label>{{'dashboard.uuid' | translate}}*</mat-label>
-        <input matInput
-               type="text"
-               name="uuid"
-               id="join-chat-room-uuid"
-               [(ngModel)]="uuid"
-        />
+        <mat-label>{{ 'dashboard.uuid' | translate }}*</mat-label>
+        <input matInput type="text" name="uuid" id="join-chat-room-uuid" [(ngModel)]="uuid" />
       </mat-form-field>
     </div>
   </div>
@@ -43,13 +38,8 @@
   <div class="row">
     <div class="col">
       <mat-form-field class="w-100">
-        <mat-label>{{'dashboard.password' | translate}}*</mat-label>
-        <input matInput
-               type="password"
-               name="password"
-               id="create"
-               [(ngModel)]="password"
-        />
+        <mat-label>{{ 'dashboard.password' | translate }}*</mat-label>
+        <input matInput type="password" name="password" id="create" [(ngModel)]="password" />
       </mat-form-field>
     </div>
   </div>
@@ -59,7 +49,7 @@
   <div class="col">
     <div class="d-grid gap-2">
       <button mat-raised-button class="button-large" color="primary" (click)="createChatRoom()">
-        {{'button.create' | translate}}
+        {{ 'button.create' | translate }}
       </button>
     </div>
   </div>
@@ -69,7 +59,7 @@
   <div class="col">
     <div class="d-grid gap-2">
       <button mat-raised-button class="button-large" color="primary" (click)="joinChatRoom()">
-        {{'button.join' | translate}}
+        {{ 'button.join' | translate }}
       </button>
     </div>
   </div>
