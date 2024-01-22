@@ -9,10 +9,10 @@ import { NotificationService } from '../../core/service/notification.service';
 
 @Component({
   selector: 'checkpoint-message',
-  templateUrl: './message.component.html',
-  styleUrls: ['./message.component.scss'],
+  templateUrl: './chat-room.component.html',
+  styleUrls: ['./chat-room.component.scss'],
 })
-export class MessageComponent implements OnInit, OnDestroy {
+export class ChatRoomComponent implements OnInit, OnDestroy {
   private readonly TOPIC_ENDPOINT = '/topic/checkpoint/';
   private readonly MESSAGE_DESTINATION = '/app/checkpoint/';
   receivedMessages: MessageDto[] = [];
@@ -20,6 +20,7 @@ export class MessageComponent implements OnInit, OnDestroy {
   message: string;
   chatRoomUuid: string;
   connected = false;
+  userMessageId: string;
 
   constructor(
     private webSocketService: WebSocketService,
@@ -41,16 +42,20 @@ export class MessageComponent implements OnInit, OnDestroy {
   }
 
   private initPage(): void {
+    this.userMessageId = crypto.randomUUID();
     this.topicSubscription = this.webSocketService
       .watch({ destination: this.TOPIC_ENDPOINT + this.chatRoomUuid })
       .pipe(map(message => JSON.parse(message.body)))
       .subscribe((message: MessageDto) => this.handleReceivedMessage(message));
     this.webSocketService.activate();
     this.webSocketService.connectionState$.subscribe((state: RxStompState) => (this.connected = state === RxStompState.OPEN));
-    this.webSocketService.stompErrors$.subscribe(this.handleStompError);
+    this.webSocketService.stompErrors$.subscribe(() => this.handleStompError());
   }
 
   private handleReceivedMessage(message: MessageDto): void {
+    if (this.userMessageId && this.userMessageId === message.id) {
+      message.sentMessage = true;
+    }
     this.receivedMessages.push(message);
   }
 
@@ -67,13 +72,14 @@ export class MessageComponent implements OnInit, OnDestroy {
     if (this.webSocketService.active) {
       this.webSocketService.deactivate();
     }
-    this.securityService.removeAuthentication();
   }
 
   sendMessage(): void {
     this.webSocketService.publish({
       destination: this.MESSAGE_DESTINATION + this.chatRoomUuid,
       body: this.message,
+      headers: { userMessageId: this.userMessageId },
     });
+    this.message = '';
   }
 }

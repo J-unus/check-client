@@ -12,6 +12,7 @@ import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { NotificationInterceptor } from './core/interceptor/notification.interceptor';
+import { MatButtonModule } from '@angular/material/button';
 
 export function createTranslateLoader(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -34,6 +35,7 @@ export function createTranslateLoader(http: HttpClient): TranslateHttpLoader {
     }),
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
+    MatButtonModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: NotificationInterceptor, multi: true },

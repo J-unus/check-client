@@ -1,5 +1,5 @@
 import { RouterModule, Routes } from '@angular/router';
-import { MessageComponent } from './message/message.component';
+import { ChatRoomComponent } from './chat-room/chat-room.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -17,12 +17,12 @@ const routes: Routes = [
   },
   {
     path: 'chat-room/:uuid',
-    component: MessageComponent,
+    component: ChatRoomComponent,
   },
 ];
 
 @NgModule({
-  declarations: [MessageComponent, ChatRoomDashboardComponent],
+  declarations: [ChatRoomComponent, ChatRoomDashboardComponent],
   imports: [CommonModule, RouterModule.forChild(routes), FormsModule, TranslateModule, MatIconModule, MatProgressSpinnerModule, MatButtonModule, MatInputModule],
 })
 export class ChatRoomModule {}

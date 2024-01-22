@@ -1,0 +1,25 @@
+@import "src/assets/style/variables";
+
+.fixed-send-message {
+  bottom: 0;
+  position: fixed;
+  z-index: 1030;
+}
+
+@mixin message-bubble {
+  min-height: 40px;
+  border-radius: 30px;
+  padding: 10px 20px;
+}
+
+.message-bubble-sent {
+  background-color: $primary-color;
+  color: white;
+  @include message-bubble;
+}
+
+.message-bubble-received {
+  background-color: #EAEAEA;
+  color: black;
+  @include message-bubble;
+}

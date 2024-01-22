@@ -17,5 +17,9 @@
   "dashboard": {
     "password": "Parool",
     "uuid": "Vestustoa number"
+  },
+  "chatRoom": {
+    "typeMessage": "Kirjuta sõnum...",
+    "sendMessage": "Saada"
   }
 }
