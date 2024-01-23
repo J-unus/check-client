@@ -27,10 +27,13 @@
       </div>
     </div>
   </div>
+  <div id="input-box-padding">
+    <div class="pb-0 pb-lg-5"></div>
+  </div>
 </div>
 
-<div class="fixed-send-message w-100 row container">
-  <div class="col-10 col-xl-11 pb-0 pb-lg-5">
+<div class="fixed-send-message w-100 row container pt-3 pb-0 pb-lg-5">
+  <div class="col-10 col-xl-11">
     <mat-form-field appearance="outline" class="w-100 form-field-density-2">
       <input matInput [placeholder]="'chatRoom.typeMessage' | translate" type="text" name="message" id="send-message" [(ngModel)]="message" />
     </mat-form-field>

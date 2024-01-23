@@ -57,6 +57,7 @@ export class ChatRoomComponent implements OnInit, OnDestroy {
       message.sentMessage = true;
     }
     this.receivedMessages.push(message);
+    this.scrollToBottom();
   }
 
   private handleStompError(): void {
@@ -81,5 +82,12 @@ export class ChatRoomComponent implements OnInit, OnDestroy {
       headers: { userMessageId: this.userMessageId },
     });
     this.message = '';
+  }
+
+  scrollToBottom(): void {
+    setTimeout(() => {
+      const element: HTMLElement = document.getElementById('input-box-padding');
+      element.scrollIntoView({ behavior: 'instant', block: 'end', inline: 'end' });
+    }, 100);
   }
 }

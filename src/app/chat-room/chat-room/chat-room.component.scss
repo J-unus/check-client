@@ -4,12 +4,15 @@
   bottom: 0;
   position: fixed;
   z-index: 1030;
+  background-color: white;
+  -webkit-backface-visibility: hidden;
 }
 
 @mixin message-bubble {
   min-height: 40px;
   border-radius: 30px;
   padding: 10px 20px;
+  word-break: break-word;
 }
 
 .message-bubble-sent {
@@ -27,4 +30,8 @@
 .send-icon {
   padding-top: 12px;
   color: $primary-color;
+}
+
+#input-box-padding {
+  padding-bottom: 6rem !important;
 }
