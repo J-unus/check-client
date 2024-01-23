@@ -35,7 +35,12 @@
       <input matInput [placeholder]="'chatRoom.typeMessage' | translate" type="text" name="message" id="send-message" [(ngModel)]="message" />
     </mat-form-field>
   </div>
-  <div class="col-2 col-xl-1">
+  <div class="col-2 col-xl-1 d-lg-none send-icon">
+    <a [routerLink]="" role="button" (click)="sendMessage()">
+      <mat-icon class="icon-xl" aria-hidden="false" fontIcon="send"></mat-icon>
+    </a>
+  </div>
+  <div class="col-2 col-xl-1 d-none d-lg-block">
     <button mat-raised-button color="primary" class="w-100 py-4" (click)="sendMessage()" [disabled]="!connected">{{ 'chatRoom.sendMessage' | translate }}</button>
   </div>
 </div>

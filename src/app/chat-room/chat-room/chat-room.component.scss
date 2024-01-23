@@ -23,3 +23,8 @@
   color: black;
   @include message-bubble;
 }
+
+.send-icon {
+  padding-top: 12px;
+  color: $primary-color;
+}
