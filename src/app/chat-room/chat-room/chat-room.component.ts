@@ -31,12 +31,14 @@ export class ChatRoomComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    if (!this.securityService.isAuthenticated()) {
-      this.notificationService.errorTranslate('notification.missingAuthentication');
-      this.router.navigate(['/']);
-    }
     this.route.paramMap.subscribe(params => {
       this.chatRoomUuid = params.get('uuid');
+      const isAuthenticated = this.securityService.isAuthenticated();
+
+      if (!isAuthenticated) {
+        this.notificationService.errorTranslate('notification.missingAuthentication');
+        this.handleNavigationToDashBoard();
+      }
       this.initPage();
     });
   }
@@ -63,7 +65,7 @@ export class ChatRoomComponent implements OnInit, OnDestroy {
   private handleStompError(): void {
     this.securityService.removeAuthentication();
     this.notificationService.errorTranslate('notification.stompFailed');
-    this.router.navigate(['/']);
+    this.handleNavigationToDashBoard();
   }
 
   ngOnDestroy(): void {
@@ -89,5 +91,12 @@ export class ChatRoomComponent implements OnInit, OnDestroy {
       const element: HTMLElement = document.getElementById('input-box-padding');
       element.scrollIntoView({ behavior: 'instant', block: 'end', inline: 'end' });
     }, 100);
+  }
+
+  handleNavigationToDashBoard(): void {
+    const queryParams = this.chatRoomUuid ? { uuid: this.chatRoomUuid } : {};
+    this.router.navigate(['/'], {
+      queryParams,
+    });
   }
 }

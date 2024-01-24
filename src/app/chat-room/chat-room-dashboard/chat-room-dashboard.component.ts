@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ChatRoomService } from '../chat-room.service';
 import SessionStorageUtil from '../../shared/util/session-storage.util';
 import { NotificationService } from '../../core/service/notification.service';
+import { first } from 'rxjs';
 
 export enum ViewEnum {
   CHOOSE = 'choose',
@@ -14,7 +15,7 @@ export enum ViewEnum {
   selector: 'checkpoint-chat-room-dashboard',
   templateUrl: 'chat-room-dashboard.component.html',
 })
-export class ChatRoomDashboardComponent {
+export class ChatRoomDashboardComponent implements OnInit {
   protected readonly ViewEnum = ViewEnum;
   uuid: string;
   password: string;
@@ -26,6 +27,16 @@ export class ChatRoomDashboardComponent {
     private notificationService: NotificationService,
     private activatedRoute: ActivatedRoute,
   ) {}
+
+  ngOnInit(): void {
+    this.activatedRoute.queryParams.pipe(first()).subscribe(params => {
+      const uuid = params['uuid'];
+      if (uuid) {
+        this.uuid = uuid;
+        this.view = ViewEnum.JOIN;
+      }
+    });
+  }
 
   createChatRoom(): void {
     if (!this.password) {
