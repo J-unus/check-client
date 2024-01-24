@@ -22,7 +22,7 @@
 }
 
 .message-bubble-received {
-  background-color: #EAEAEA;
+  background-color: $gray-200;
   color: black;
   @include message-bubble;
 }
@@ -30,6 +30,13 @@
 .send-icon {
   padding-top: 12px;
   color: $primary-color;
+}
+
+.message-time {
+  color: $gray-500;
+  font: 14px 'roboto';
+  font-weight: 450;
+  line-height: 21px;
 }
 
 #input-box-padding {
