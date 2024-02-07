@@ -1,0 +1,14 @@
+version: '1'
+services:
+  app:
+    build:
+      context: .
+    ports:
+      - 4209:80
+    working_dir: /usr/src/app
+    volumes:
+      - ./:/usr/src/app
+      - node_modules:/usr/src/app/node_modules
+
+volumes:
+  node_modules:
